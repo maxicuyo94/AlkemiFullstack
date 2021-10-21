@@ -1,10 +1,10 @@
 const server = require("express").Router();
-const { Pokemon } = require("../db.js");
+const { Operation } = require("../db.js");
 
 server.get("/", (req, res, next) => {
-  Pokemon.findAll()
-    .then((pokemons) => {
-      res.send(pokemons);
+  Operation.findAll()
+    .then((operations) => {
+      res.send(operations);
     })
     .catch((error) => {
       console.log(error);
