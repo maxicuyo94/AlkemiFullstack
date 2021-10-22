@@ -3,8 +3,8 @@ const operation = {};
 
 operation.getAll = async (req, res) => {
   try {
-    let operations = await Operation.findAll();
-    res.send(operations);
+    let allOperations = await Operation.findAll();
+    res.send(allOperations);
   } catch (error) {
     console.log(error);
     res.status(400).send(error);
@@ -47,12 +47,17 @@ operation.update = async (req, res) => {
   }
 };
 
-// operation.balance = async (req, res) => {
-//   try {
-//     res.send(req);
-//   } catch (error) {
-//     handleError(error);
-//   }
-// };
+operation.balance = async (req, res) => {
+  let balance = 0;
+  try {
+    let allOperations = await Operation.findAll();
+    allOperations.map((op) => {
+      op.type === "egress" ? (balance -= op.amount) : (balance += op.amount);
+    });
+    res.status(200).json(balance);
+  } catch (error) {
+    handleError(error);
+  }
+};
 
 module.exports = operation;
