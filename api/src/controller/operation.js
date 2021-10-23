@@ -56,7 +56,24 @@ operation.balance = async (req, res) => {
     });
     res.status(200).json(balance);
   } catch (error) {
-    handleError(error);
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
+
+operation.filter = async (req, res) => {
+  let filter = req.params.filter;
+  try {
+    const query = {
+      first: { limit: 10 },
+      egress: { where: { type: "egress" } },
+      entry: { where: { type: "entry" } },
+    };
+    let filteredOperations = await Operation.findAll({ ...query[filter] });
+    res.send(filteredOperations);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
   }
 };
 

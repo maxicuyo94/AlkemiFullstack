@@ -9,6 +9,8 @@ server.delete("/delete", controller.delete);
 
 server.put("/update", controller.update);
 
-server.get("/balance", controller.balance)
+server.get("/balance", controller.balance);
+
+server.get("/filter/:filter", controller.filter);
 
 module.exports = server;
