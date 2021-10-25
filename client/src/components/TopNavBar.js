@@ -21,7 +21,7 @@ const TopNavBar = (props) => {
   return (
     <div>
       <Navbar className="container-fluid" color="$blue-800" light expand="md">
-        <NavbarBrand href="/">BalanceBook</NavbarBrand>
+        <NavbarBrand className="fw-bold" href="/">BalanceBook</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} color="primary" navbar>
           <Nav className="mr-auto" navbar>

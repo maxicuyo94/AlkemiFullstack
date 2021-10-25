@@ -1,8 +1,9 @@
 import { Route } from "react-router";
 import "./App.css";
+import { AddTransaction } from "./components/AddTransaction";
 import { LandingPage } from "./components/LandingPage";
 import { ListTransaction } from "./components/ListTransaction";
-import TopNavBar from "./components/Nav";
+import TopNavBar from "./components/TopNavBar";
 
 function App() {
   return (
@@ -13,10 +14,13 @@ function App() {
           <LandingPage />
         </Route>
         <Route exact path="/add">
-          <h1>ADDD</h1>
+          <AddTransaction />
         </Route>
         <Route exact path="/list/:filter">
-          <ListTransaction/>
+          <ListTransaction />
+        </Route>
+        <Route exact path="/edit/:id">
+          <ListTransaction />
         </Route>
       </div>
     </div>
