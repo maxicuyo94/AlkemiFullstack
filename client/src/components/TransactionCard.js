@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const ListOperetaion = () => {
+export const TransactionCard = () => {
   return (
     <div>
-      ListOperetaion
+      A card
     </div>
   )
 }

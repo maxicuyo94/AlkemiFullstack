@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("operation", {
+  sequelize.define("transaction", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     type: {
-      type: DataTypes.ENUM("entry", "egress"),
+      type: DataTypes.ENUM("inflow", "outflow"),
       allowNull: false,
     },
   });

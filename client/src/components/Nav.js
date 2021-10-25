@@ -20,16 +20,16 @@ const TopNavBar = (props) => {
 
   return (
     <div>
-      <Navbar className="container-fluid" color="dark" expand="md">
+      <Navbar className="container-fluid" color="$blue-800" light expand="md">
         <NavbarBrand href="/">BalanceBook</NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
+        <Collapse isOpen={isOpen} color="primary" navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/add/">Add Operation</NavLink>
+              <NavLink href="/add/">Add Transaction</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/list/none">List Operation</NavLink>
+              <NavLink href="/list/none">List Transaction</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
@@ -37,10 +37,10 @@ const TopNavBar = (props) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <NavLink href="/list/entry">Entry</NavLink>
+                  <NavLink href="/list/inflow">inflow</NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink href="/list/egress">Egress</NavLink>
+                  <NavLink href="/list/outflow">outflow</NavLink>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

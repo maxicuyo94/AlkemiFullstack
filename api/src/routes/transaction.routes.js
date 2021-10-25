@@ -1,5 +1,5 @@
 const server = require("express").Router();
-const controller = require("../controller/operation");
+const controller = require("../controller/transaction");
 
 server.get("/", controller.getAll);
 
