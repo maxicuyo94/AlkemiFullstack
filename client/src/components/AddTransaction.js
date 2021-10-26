@@ -1,30 +1,27 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
+import { apiRequest } from "../helpers/apiRequest";
 import { useHistory } from "react-router-dom";
 
-import { Col, Form, FormGroup, Input, Label } from "reactstrap";
+import { Button, Col, Form, FormGroup, Input, Label } from "reactstrap";
 
 export const AddTransaction = () => {
-  // const [transaction, setTransaction] = useState({});
   let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let reqOptions = {
-      url: "http://localhost:3001/transactions/add",
-      method: "POST",
-      data: {
-        concept: e.target[1].value,
-        amount: e.target[0].value,
-        date: e.target[2].value,
-        type: e.target[3].value,
-      },
+    let data = {
+      concept: e.target[1].value,
+      amount: e.target[0].value,
+      date: e.target[2].value,
+      type: e.target[3].value,
     };
 
-    axios.request(reqOptions).then(function (response) {
-      history.push("/");
-    });
+    apiRequest("POST", "/add", data)
+      .then(() => {
+        history.go(0);
+      })
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -37,11 +34,11 @@ export const AddTransaction = () => {
         </Label>
         <Col sm={10}>
           <Input
-            type="float"
+            type="number"
+            step="0.01"
             name="amount"
             id="amount"
-            onChange={(e) => console.log(e)}
-            placeholder="Example: 44.55"
+            placeholder="Example: 44,55"
           />
         </Col>
       </FormGroup>
@@ -54,7 +51,7 @@ export const AddTransaction = () => {
             type="text"
             name="concept"
             id="concept"
-            placeholder="Example: "
+            placeholder="Example: Salary"
           />
         </Col>
       </FormGroup>
@@ -88,7 +85,10 @@ export const AddTransaction = () => {
           </Input>
         </Col>
       </FormGroup>
-      <Input type="submit">SUBMIT</Input>
+      <Button size="lg" block>
+        Submit
+      </Button>
+      {/* <Input type="submit">SUBMIT</Input> */}
     </Form>
   );
 };

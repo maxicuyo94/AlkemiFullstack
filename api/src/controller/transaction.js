@@ -3,7 +3,9 @@ const transaction = {};
 
 transaction.getAll = async (req, res) => {
   try {
-    let allTransactions = await Transaction.findAll();
+    let allTransactions = await Transaction.findAll({
+      order: [["updatedAt", "DESC"]],
+    });
     res.send(allTransactions);
   } catch (error) {
     console.log(error);
@@ -14,7 +16,12 @@ transaction.getAll = async (req, res) => {
 transaction.add = async (req, res) => {
   let { concept, amount, date, type } = req.body;
   try {
-    let newTransaction = await Transaction.create({ concept, amount, date, type });
+    let newTransaction = await Transaction.create({
+      concept,
+      amount,
+      date,
+      type,
+    });
     res.send(newTransaction);
   } catch (error) {
     console.log(error);
@@ -65,9 +72,9 @@ transaction.filter = async (req, res) => {
   let filter = req.params.filter;
   try {
     const query = {
-      first: { limit: 10 },
-      outflow: { where: { type: "outflow" } },
-      inflow: { where: { type: "inflow" } },
+      first: { limit: 10, order: [["updatedAt", "DESC"]] },
+      outflow: { where: { type: "outflow" }, order: [["updatedAt", "DESC"]] },
+      inflow: { where: { type: "inflow" }, order: [["updatedAt", "DESC"]] },
     };
     let filteredTransactions = await Transaction.findAll({ ...query[filter] });
     res.send(filteredTransactions);

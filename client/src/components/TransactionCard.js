@@ -43,8 +43,8 @@ export const TransactionCard = ({ info }) => {
       style={{
         backgroundColor: "#282c34",
         borderColor: preset[info.type].color,
-        maxWidth: "700px",
-        alignSelf: "center",
+        // maxWidth: "700px",
+        // alignSelf: "center",
         marginTop: "1vh",
       }}
     >

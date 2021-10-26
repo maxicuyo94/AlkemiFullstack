@@ -26,10 +26,8 @@ export const ListTransaction = () => {
 
   return (
     <Container>
-      {/* <div className="d-flex justify-content-center"> */}
       <div className="card-columns ">
         <p className="fs-1 fw-bold">{presets[filter].title}Transactions</p>
-        {/* <div className={"vstack gap-" + list.length}> */}
         {list?.map((tr, key) => {
           return <TransactionCard key={key} info={tr} />;
         })}
