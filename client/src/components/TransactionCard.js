@@ -2,14 +2,15 @@ import React from "react";
 import { Card, CardTitle, CardText, Button } from "reactstrap";
 import { apiRequest } from "../helpers/apiRequest";
 import { useHistory } from "react-router";
+import moment from "moment";
 
 export const TransactionCard = ({ info }) => {
   const history = useHistory();
   const handleDelete = async () => {
     try {
       const res = await apiRequest("DELETE", "delete", { id: info.id });
-      console.log(res.data);
-      history.go(0);
+      // console.log(res.data);
+      res && history.go(0);
     } catch (error) {
       console.log(error);
     }
@@ -49,12 +50,20 @@ export const TransactionCard = ({ info }) => {
     >
       <CardTitle tag="h5">
         {preset[info.type].icon} ${info?.amount}
-        <Button onClick={handleDelete} size="sm" outline color="danger">
+        <Button
+          className="float-end"
+          onClick={handleDelete}
+          size="sm"
+          outline
+          color="danger"
+        >
           X
         </Button>
       </CardTitle>
       <CardText>Concept: {info?.concept}</CardText>
-      <CardText>Date: {info?.date}</CardText>
+      <CardText className="float-start">
+        {moment(info?.date).format("DD/MM/YYYY")}
+      </CardText>
     </Card>
   );
 };
