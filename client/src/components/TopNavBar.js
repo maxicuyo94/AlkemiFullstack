@@ -20,14 +20,13 @@ const TopNavBar = (props) => {
 
   return (
     <div>
-      <Navbar className="container-fluid" color="$blue-800" light expand="md">
-        <NavbarBrand className="fw-bold" href="/">BalanceBook</NavbarBrand>
+      <Navbar className="container-fluid" light expand="md">
+        <NavbarBrand className="fw-bold" href="/">
+          BalanceBook
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} color="primary" navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/add/">Add Transaction</NavLink>
-            </NavItem>
             <NavItem>
               <NavLink href="/list/none">List Transaction</NavLink>
             </NavItem>
@@ -44,6 +43,9 @@ const TopNavBar = (props) => {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
+            <NavItem>
+              <NavLink href="/add/">Add Transaction</NavLink>
+            </NavItem>
             <NavItem>
               <NavLink href="https://github.com/maxicuyo94/AlkemiFullstack">
                 GitHub
