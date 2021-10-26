@@ -36,10 +36,10 @@ const TopNavBar = (props) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <NavLink href="/list/inflow">inflow</NavLink>
+                  <NavLink href="/list/inflow">Inflow</NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink href="/list/outflow">outflow</NavLink>
+                  <NavLink href="/list/outflow">Outflow</NavLink>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

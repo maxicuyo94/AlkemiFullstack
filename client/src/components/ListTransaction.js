@@ -28,8 +28,8 @@ export const ListTransaction = () => {
       <p className="fs-1 fw-bold">{presets[filter].title}Transactions</p>
 
       <div className={"vstack gap-" + list.length}>
-        {list?.map((tr) => {
-          return <TransactionCard info={tr} />;
+        {list?.map((tr, key) => {
+          return <TransactionCard key={key} info={tr} />;
         })}
       </div>
     </div>

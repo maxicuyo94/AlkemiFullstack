@@ -52,8 +52,8 @@ export const LandingPage = () => {
       <p className="fs-1 fw-bold">Last 10 transactions</p>
 
       <div className={"vstack gap-" + transactions.length}>
-        {transactions?.map((tr) => {
-          return <TransactionCard info={tr} />;
+        {transactions?.map((tr, key) => {
+          return <TransactionCard key={key} info={tr} />;
         })}
       </div>
     </Container>

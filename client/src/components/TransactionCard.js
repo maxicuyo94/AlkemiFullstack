@@ -1,14 +1,19 @@
 import React from "react";
-import { Card, CardTitle, CardText } from "reactstrap";
+import { Card, CardTitle, CardText, Button } from "reactstrap";
+import { apiRequest } from "../helpers/apiRequest";
+import { useHistory } from "react-router";
 
 export const TransactionCard = ({ info }) => {
-  // const [info, setInfo] = useState({
-  //   amount: 45.55,
-  //   concept: "asdfaaszxcvzxcvzxcdfassd",
-  //   date: "0001-11-01T00:00:00.000Z",
-  //   id: "52e6975f-4c96-4dac-b4d9-8b954a11023e",
-  //   type: "inflow",
-  // });
+  const history = useHistory();
+  const handleDelete = async () => {
+    try {
+      const res = await apiRequest("DELETE", "delete", { id: info.id });
+      console.log(res.data);
+      history.go(0);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const preset = {
     inflow: {
@@ -44,6 +49,9 @@ export const TransactionCard = ({ info }) => {
     >
       <CardTitle tag="h5">
         {preset[info.type].icon} ${info?.amount}
+        <Button onClick={handleDelete} size="sm" outline color="danger">
+          X
+        </Button>
       </CardTitle>
       <CardText>Concept: {info?.concept}</CardText>
       <CardText>Date: {info?.date}</CardText>
