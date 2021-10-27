@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, CardTitle, CardText, Button } from "reactstrap";
 import { apiRequest } from "../helpers/apiRequest";
 import { useHistory } from "react-router";
 import moment from "moment";
+import { AppContext } from "../provider/index";
 
 export const TransactionCard = ({ info }) => {
   const history = useHistory();
-  const handleDelete = async () => {
-    try {
-      const res = await apiRequest("DELETE", "delete", { id: info.id });
-      // console.log(res.data);
-      res && history.go(0);
-    } catch (error) {
-      console.log(error);
-    }
+
+  const [state, setState] = useContext(AppContext);
+  const toggle = () => setState({ ...state, modal: !state.modal, info: info });
+
+  const handleDelete = () => {
+    apiRequest("DELETE", "delete", { id: info.id })
+      .then(() => {
+        history.go(0);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const preset = {
@@ -39,12 +44,9 @@ export const TransactionCard = ({ info }) => {
       body
       outline
       inverse
-      // color={preset[info.type].color}
       style={{
         backgroundColor: "#282c34",
         borderColor: preset[info.type].color,
-        // maxWidth: "700px",
-        // alignSelf: "center",
         marginTop: "1vh",
       }}
     >
@@ -64,6 +66,7 @@ export const TransactionCard = ({ info }) => {
       <CardText className="float-start">
         {moment(info?.date).format("DD/MM/YYYY")}
       </CardText>
+      <Button onClick={toggle}>EDIT</Button>
     </Card>
   );
 };

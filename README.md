@@ -1,4 +1,4 @@
-# Boilerplate
+# Boilerplate by maxicuyo94
 
 ### Instrucciones para ejecutar el proyecto
 
@@ -14,7 +14,7 @@
 
 - Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres.
 
-- Adicionalmente será necesario que creen desde psql una base de datos llamada `pokemon`
+- Adicionalmente será necesario que creen desde psql una base de datos llamada `book`
 
 - El contenido de `client` fue creado usando: Create React App.
 

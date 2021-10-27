@@ -13,7 +13,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 
-const TopNavBar = (props) => {
+export const TopNavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -57,5 +57,3 @@ const TopNavBar = (props) => {
     </div>
   );
 };
-
-export default TopNavBar;

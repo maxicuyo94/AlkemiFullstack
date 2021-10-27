@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { apiRequest } from "../helpers/apiRequest";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
-import { Button, Col, Form, FormGroup, Input, Label } from "reactstrap";
+import { Alert, Button, Col, Form, FormGroup, Input, Label } from "reactstrap";
 
 export const AddTransaction = () => {
-  let history = useHistory();
+  // let history = useHistory();
+  const [visible, setVisible] = useState(false);
+  const onDismiss = () => setVisible(!visible);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,17 +21,21 @@ export const AddTransaction = () => {
 
     apiRequest("POST", "/add", data)
       .then(() => {
-        history.go(0);
+        // history.go(0);
+        onDismiss();
       })
       .catch((e) => console.log(e));
   };
 
   return (
     <Form className="container" onSubmit={handleSubmit}>
+      <Alert color="info" isOpen={visible} toggle={onDismiss}>
+        Transaction Added
+      </Alert>
       <p className="fs-1">Add Transaction</p>
 
       <FormGroup row>
-        <Label className="fs-5 align-self-center " for="amount" sm={2}>
+        <Label className="fs-5" for="amount" sm={2}>
           Amount:
         </Label>
         <Col sm={10}>
@@ -43,7 +49,7 @@ export const AddTransaction = () => {
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label className="fs-5 align-self-center " for="concept" sm={2}>
+        <Label className="fs-5" for="concept" sm={2}>
           Concept:
         </Label>
         <Col sm={10}>
@@ -56,7 +62,7 @@ export const AddTransaction = () => {
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label className="fs-5 align-self-center " for="date" sm={2}>
+        <Label className="fs-5" for="date" sm={2}>
           Date:
         </Label>
         <Col sm={10}>
@@ -69,7 +75,7 @@ export const AddTransaction = () => {
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label className="fs-5 align-self-center " for="type" sm={2}>
+        <Label className="fs-5" for="type" sm={2}>
           Type:
         </Label>
         <Col sm={10}>
@@ -88,7 +94,6 @@ export const AddTransaction = () => {
       <Button size="lg" block>
         Submit
       </Button>
-      {/* <Input type="submit">SUBMIT</Input> */}
     </Form>
   );
 };
