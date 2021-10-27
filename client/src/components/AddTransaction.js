@@ -2,7 +2,17 @@ import React, { useState } from "react";
 import { apiRequest } from "../helpers/apiRequest";
 // import { useHistory } from "react-router-dom";
 
-import { Alert, Button, Col, Form, FormGroup, Input, Label } from "reactstrap";
+import {
+  Alert,
+  Button,
+  Col,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Modal,
+  ModalBody,
+} from "reactstrap";
 
 export const AddTransaction = () => {
   // let history = useHistory();
@@ -29,9 +39,13 @@ export const AddTransaction = () => {
 
   return (
     <Form className="container" onSubmit={handleSubmit}>
-      <Alert color="info" isOpen={visible} toggle={onDismiss}>
-        Transaction Added
-      </Alert>
+      <Modal isOpen={visible} toggle={onDismiss}>
+        <ModalBody>
+          <div class="alert alert-success float-center" role="alert">
+            Transaction Added
+          </div>
+        </ModalBody>
+      </Modal>
       <p className="fs-1">Add Transaction</p>
 
       <FormGroup row>
